@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nisanur Bulmaz - Portfolio</title>
+    <style>
+        /* GENEL STILLER */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --pink-light: #f8bbd0;
+            --pink-medium: #ec407a;
+            --pink-dark: #c2185b;
+            --black-light: #333;
+            --black-dark: #111;
+        }
+        
+        body {
+            background-color: var(--black-dark);
+            color: white;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        section {
+            padding: 60px 0;
+        }
+        
+        h1, h2, h3 {
+            margin-bottom: 20px;
+            color: var(--pink-medium);
+        }
+        
+        a {
+            color: var(--pink-light);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        a:hover {
+            color: var(--pink-medium);
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--pink-medium);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(236, 64, 122, 0.3);
+        }
+        
+        .btn:hover {
+            background-color: var(--pink-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(236, 64, 122, 0.4);
+            color: white;
+        }
+        
+        /* HEADER STILI */
+        header {
+            background-color: rgba(17, 17, 17, 0.95);
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease;
+        }
+        
+        header.scrolled {
+            padding: 10px 0;
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--pink-medium);
+            animation: pulse 2s infinite;
+        }
+        
+        .menu {
+            display: flex;
+            list-style-type: none;
+        }
+        
+        .menu li {
+            margin-left: 30px;
+        }
+        
+        .menu a {
+            position: relative;
+            padding: 5px 0;
+        }
+        
+        .menu a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--pink-medium);
+            transition: width 0.3s ease;
+        }
+        
+        .menu a:hover::after {
+            width: 100%;
+        }
+        
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+        
+        /* HERO SECTION */
+        #hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--black-dark) 0%, var(--black-light) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .particle {
+            position: absolute;
+            background-color: var(--pink-medium);
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: float 15s infinite linear;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0) translateX(0) rotate(0deg);
+                opacity: 0;
+            }
+            50% {
+                opacity: 0.5;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        .hero-content {
+            text-align: center;
+            z-index: 10;
+            animation: fadeInUp 1s ease;
+        }
+        
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            color: white;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero-content h1 span {
+            color: var(--pink-medium);
+            display: block;
+            font-size: 2rem;
+            margin-top: 10px;
+            font-weight: 300;
+        }
+        
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* HAKKIMDA SECTION */
+        #about {
+            background-color: var(--black-light);
+            position: relative;
+        }
+        
+        .about-content {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 40px;
+            animation: fadeIn 1s ease;
+        }
+        
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .about-text p {
+            margin-bottom: 20px;
+        }
+        
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+            position: relative;
+            animation: float 5s ease-in-out infinite;
+        }
+        
+        .about-image img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 3px solid var(--pink-medium);
+        }
+        
+        .about-image::before {
+            content: '';
+            position: absolute;
+            top: -15px;
+            left: -15px;
+            width: 100%;
+            height: 100%;
+            border: 2px dashed var(--pink-light);
+            border-radius: 10px;
+            z-index: -1;
+        }
+        
+        .skills {
+            margin-top: 40px;
+        }
+        
+        .skill-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 20px;
+        }
+        
+        .skill-item {
+            text-align: center;
+            padding: 15px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            cursor: default;
+        }
+        
+        .skill-item:hover {
+            transform: translateY(-5px);
+            background-color: rgba(236, 64, 122, 0.1);
+        }
+        
+        /* PROJELERİM SECTION */
+        #projects {
+            background-color: var(--black-dark);
+        }
+        
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .project-card {
+            background-color: var(--black-light);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .project-image {
+            height: 200px;
+            background-color: var(--black-dark);
+            overflow: hidden;
+        }
+        
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .project-card:hover .project-image img {
+            transform: scale(1.1);
+        }
+        
+        .project-content {
+            padding: 20px;
+        }
+        
+        .project-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+        
+        .project-content p {
+            margin-bottom: 15px;
+            color: #ccc;
+            font-size: 0.9rem;
+        }
+        
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+        }
+        
+        .tech-tag {
+            background-color: rgba(236, 64, 122, 0.2);
+            color: var(--pink-light);
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            margin-right: 8px;
+            margin-bottom: 8px;
+        }
+        
+        .project-links {
+            display: flex;
+            gap: 15px;
+            justify-content: flex-end;
+        }
+        
+        .project-links a {
+            color: white;
+            background-color: var(--pink-medium);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .project-links a:hover {
+            background-color: var(--pink-dark);
+            transform: translateY(-3px);
+        }
+        
+        /* İLETİŞİM SECTION */
+        #contact {
+            background-color: var(--black-light);
+            position: relative;
+        }
+        
+        .contact-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+        
+        .contact-info {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .info-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .info-icon {
+            background-color: var(--pink-medium);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            box-shadow: 0 5px 15px rgba(236, 64, 122, 0.3);
+        }
+        
+        .info-details h4 {
+            font-size: 1.1rem;
+            color: var(--pink-light);
+            margin-bottom: 5px;
+        }
+        
+        .contact-form {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--pink-light);
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(236, 64, 122, 0.3);
+            border-radius: 5px;
+            color: white;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--pink-medium);
+            background-color: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 8px rgba(236, 64, 122, 0.5);
+        }
+        
+        textarea.form-control {
+            resize: vertical;
+            min-height: 150px;
+        }
+        
+        /* FOOTER */
+        footer {
+            background-color: var(--black-dark);
+            padding: 30px 0;
+            text-align: center;
+        }
+        
+        .footer-content p {
+            margin-bottom: 20px;
+            color: #999;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            margin: 0 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--pink-medium);
+            transform: translateY(-5px);
+        }
+        
+        .footer-bottom {
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: #777;
+        }
+        
+        /* ANİMASYONLAR */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes pulse {
+            0% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.7;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+        
+        /* RESPONSIVE TASARIM */
+        @media (max-width: 768px) {
+            .menu {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                height: 100vh;
+                background-color: var(--black-dark);
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                transition: right 0.3s ease;
+                z-index: 1000;
+            }
+            
+            .menu.active {
+                right: 0;
+            }
+            
+            .menu li {
+                margin: 15px 0;
+            }
+            
+            .hamburger {
+                display: block;
+                z-index: 1001;
+            }
+            
+            .bar {
+                display: block;
+                width: 25px;
+                height: 3px;
+                margin: 5px auto;
+                background-color: white;
+                transition: all 0.3s ease;
+            }
+            
+            .hamburger.active .bar:nth-child(1) {
+                transform: translateY(8px) rotate(45deg);
+            }
+            
+            .hamburger.active .bar:nth-child(2) {
+                opacity: 0;
+            }
+            
+            .hamburger.active .bar:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">Nisanur Bulmaz</div>
+                <ul class="menu">
+                    <li><a href="#hero">Ana Sayfa</a></li>
+                    <li><a href="#about">Hakkımda</a></li>
+                    <li><a href="#projects">Projelerim</a></li>
+                    <li><a href="#contact">İletişim</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section id="hero">
+        <div class="hero-particles">
+            <!-- Particles will be added via JavaScript -->
+        </div>
+        <div class="container">
+            <div class="hero-content">
+                <h1>Nisanur Bulmaz <span>Mühendis @ Aselsan</span></h1>
+                <p>Yenilikçi ve teknoloji odaklı çözümler geliştiren bir mühendis olarak, karmaşık sorunları çözen ve geleceği şekillendiren projelerde yer alıyorum.</p>
+                <a href="#contact" class="btn">İletişime Geç</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- HAKKIMDA SECTION -->
+    <section id="about">
+        <div class="container">
+            <h2>Hakkımda</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Merhaba! Ben Nisanur Bulmaz, Aselsan'da mühendis olarak çalışıyorum. Teknoloji ve yenilikçi çözümler geliştirme konusunda tutkulu bir profesyonelim.</p>
+                    <p>Mühendislik kariyerim boyunca, karmaşık problemlere yaratıcı çözümler üretmek için analitik düşünme ve teknik becerilerimi kullanıyorum. Savunma teknolojileri alanında çalışarak ülkemizin teknolojik gelişimine katkıda bulunmaktan gurur duyuyorum.</p>
+                    <p>Sürekli öğrenmeye ve kendimi geliştirmeye odaklanıyorum. Yeni teknolojileri keşfetmek ve bunları projelerime entegre etmek benim için heyecan verici.</p>
+                    
+                    <div class="skills">
+                        <h3>Becerilerim</h3>
+                        <div class="skill-grid">
+                            <div class="skill-item">Mühendislik Tasarımı</div>
+                            <div class="skill-item">Proje Yönetimi</div>
+                            <div class="skill-item">Problem Çözme</div>
+                            <div class="skill-item">Teknik Analiz</div>
+                            <div class="skill-item">Yazılım Geliştirme</div>
+                            <div class="skill-item">Takım Çalışması</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <img src="/api/placeholder/400/400" alt="Nisanur Bulmaz">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJELERİM SECTION -->
+    <section id="projects">
+        <div class="container">
+            <h2>Projelerim</h2>
+            <p>Çalıştığım bazı projeler ve mühendislik çözümleri</p>
+            
+            <div class="projects-grid">
+                <!-- PROJE 1 -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="/api/placeholder/400/300" alt="Proje 1">
+                    </div>
+                    <div class="project-content">
+                        <h3>Sensör Entegrasyon Sistemi</h3>
+                        <p>Karmaşık sensör verilerini analiz eden ve gerçek zamanlı bilgi sağlayan gelişmiş bir entegrasyon sistemi.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">C++</span>
+                            <span class="tech-tag">Sensör Teknolojisi</span>
+                            <span class="tech-tag">Veri Analizi</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" title="Detaylar">i</a>
+                            <a href="https://github.com/nisa01" title="GitHub" target="_blank">G</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- PROJE 2 -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="/api/placeholder/400/300" alt="Proje 2">
+                    </div>
+                    <div class="project-content">
+                        <h3>Özel Algoritma Geliştirme</h3>
+                        <p>Karmaşık problemleri çözmek için optimize edilmiş ve yüksek performanslı algoritmalar geliştirme projesi.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Algoritma Tasarımı</span>
+                            <span class="tech-tag">Optimizasyon</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" title="Detaylar">i</a>
+                            <a href="https://github.com/nisa01" title="GitHub" target="_blank">G</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- PROJE 3 -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="/api/placeholder/400/300" alt="Proje 3">
+                    </div>
+                    <div class="project-content">
+                        <h3>Veri Görselleştirme Platformu</h3>
+                        <p>Karmaşık veri setlerini anlaşılır görsel unsurlara dönüştüren interaktif bir platform.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">D3.js</span>
+                            <span class="tech-tag">Veri Bilimi</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" title="Detaylar">i</a>
+                            <a href="https://github.com/nisa01" title="GitHub" target="_blank">G</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- İLETİŞİM SECTION -->
+    <section id="contact">
+        <div class="container">
+            <h2>İletişim</h2>
+            <div class="contact-wrapper">
+                <div class="contact-info">
+                    <p>Projeleriniz veya işbirliği fırsatları hakkında konuşmak isterseniz, benimle iletişime geçebilirsiniz.</p>
+                    
+                    <div class="info-item">
+                        <div class="info-icon">@</div>
+                        <div class="info-details">
+                            <h4>E-posta</h4>
+                            <p><a href="mailto:nisanurbulmaz2121@gmail.com">nisanurbulmaz2121@gmail.com</a></p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-icon">G</div>
+                        <div class="info-details">
+                            <h4>GitHub</h4>
+                            <p><a href="https://github.com/nisa01" target="_blank">github.com/nisa01</a></p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <form>
+                        <div class="form-group">
+                            <label for="name">İsim</label>
+                            <input type="text" id="name" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">E-posta</label>
+                            <input type="email" id="email" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject">Konu</label>
+                            <input type="text" id="subject" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Mesaj</label>
+                            <textarea id="message" class="form-control" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn">Gönder</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="social-links">
+                    <a href="https://github.com/nisa01" target="_blank" title="GitHub">G</a>
+                    <a href="https://linkedin.com/in/" target="_blank" title="LinkedIn">L</a>
+                    <a href="#" title="Twitter">T</a>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2025 Nisanur Bulmaz. Tüm hakları saklıdır.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile Menu Toggle
+        const hamburger = document.querySelector('.hamburger');
+        const menu = document.querySelector('.menu');
+        
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            menu.classList.toggle('active');
+        });
+        
+        // Close menu when clicking on a nav link
+        document.querySelectorAll('.menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                menu.classList.remove('active');
+            });
+        });
+        
+        // Header Scroll Effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            header.classList.toggle('scrolled', window.scrollY > 50);
+        });
+        
+        // Create Particles
+        function createParticles() {
+            const particlesContainer = document.querySelector('.hero-particles');
+            const numberOfParticles = 30;
+            
+            for (let i = 0; i < numberOfParticles; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Random position
+                const posX = Math.random() * 100;
+                const posY = Math.random() * 100;
+                
+                // Random size
+                const size = Math.random() * 15 + 5;
+                
+                // Random animation duration and delay
+                const duration = Math.random() * 20 + 10;
+                const delay = Math.random() * 10;
+                
+                // Apply styles
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${posX}%`;
+                particle.style.bottom = `${posY}%`;
+                particle.style.animationDuration = `${duration}s`;
+                particle.style.animationDelay = `${delay}s`;
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+        
+        // Animation for project cards
+        function animateProjectCards() {
+            const projectCards = document.querySelectorAll('.project-card');
+            
+            projectCards.forEach((card, index) => {
+                card.style.animation = `fadeIn 0.5s ease forwards ${index * 0.2}s`;
+                card.style.opacity = '0';
+            });
+        }
+        
+        // Initialize when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            createParticles();
+            animateProjectCards();
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 70,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
